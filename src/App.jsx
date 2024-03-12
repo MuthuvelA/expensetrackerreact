@@ -49,11 +49,32 @@ function App() {
     setisEdit(true);
 
   }
-
+  var income=0,expense=0,bal=0;
+  expenseArr.forEach((value)=>{
+    if(value.amount>0){
+      income+=parseInt(value.amount)
+    }else{
+      expense+=parseInt(value.amount)
+    }
+  })
+  var bal=0
+  if(income+expense>0) bal=income+expense;
   return (
     <>
       <h1>EXPENSE TRACKER</h1>
       <div>
+        <div className="balance">Balance: {bal}</div>
+        <div class="income-expense-container">
+          <div className="income">
+            <span className="title">Income</span>
+            <span>{income}</span>
+          </div>
+          <div className="block"></div>
+          <div className="expense">
+              <span className="title">Expense</span>
+              <span>{expense}</span>
+          </div>
+        </div>
         <ExpenseForm value={getformData} title={title} amount={amount}/>
       </div>
       <div>
